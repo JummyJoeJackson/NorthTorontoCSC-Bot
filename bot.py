@@ -1,4 +1,5 @@
-import discord, responses
+import discord
+import responses
 
 
 async def on_user_message(message, user_message, is_private):
@@ -16,7 +17,6 @@ async def on_user_message(message, user_message, is_private):
 def run_discord_bot():
     TOKEN = "token"
     intents = discord.Intents.all()
-
     client = discord.Client(intents=intents)
 
     @client.event
@@ -31,7 +31,6 @@ def run_discord_bot():
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel)
-
         print(f"{username}: {user_message} ({channel})")
 
         if user_message[0] == "?":
