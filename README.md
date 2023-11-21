@@ -3,4 +3,4 @@ The new 2023-2024 school year North Toronto Computer Science Club discord bot. A
 
 ## Collaborators:
 - Diego
-- 
+- Jake
