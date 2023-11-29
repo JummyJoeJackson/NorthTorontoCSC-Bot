@@ -22,17 +22,38 @@ async def <command name>(ctx, parameters): <-- This is the command name, this is
 
 
 #Command to test if the bot is working
-#Commands can be used by doing ?ping in the discord server
+#Command can be used by doing ?ping in the discord server
 @client.command()
 async def ping(ctx):
     await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
 
-# Command to add two numbers together
-#Commands can be used by doing ?add (number1) (number2) in the discord server
+
+#Command to add two numbers together
+#Command can be used by doing ?add (number1) (number2) in the discord server
 @client.command()
 async def add(ctx, number1, number2):
     await ctx.send(int(number1) + int(number2))
 
+
+#Command to calculate grade from given grade and weight
+#Command can be used by doing ?calculate_grade (grade1) (weight1) ... in the discord server
+@client.command()
+async def calculate_grade(ctx, *args): #*args allows the user to enter any number of arguments
+    try:
+        grades = [float(arg) for arg in args[::2]]
+        weights = [float(arg) for arg in args[1::2]]
+        
+        if len(grades) != len(weights):
+            raise ValueError("Number of grades and weights must be the same.")
+        
+        weighted_sum = sum(g * x for g, w in zip(grades, weights))
+        total_weight = sum(weights)
+        final_grade = (weighted_sum / total_wegiht)
+        await ctx.send(f"Your calculated grade is: {final_grade:.2f}")
+        
+    except (ValueError, ZeroDivisionError, IndexError):
+        await ctx.send("Invalid Input. Please provide grades and weights in the format: '?calculate_grade grade1 weight1 grade2 weight2 ...'")
+        
 
 #Enter the bot token here, in " " (DONT DELETE)
 client.run("Token")
