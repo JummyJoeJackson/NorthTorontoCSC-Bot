@@ -46,9 +46,9 @@ async def calculate_grade(ctx, *args): #*args allows the user to enter any numbe
         if len(grades) != len(weights):
             raise ValueError("Number of grades and weights must be the same.")
         
-        weighted_sum = sum(g * x for g, w in zip(grades, weights))
+        weighted_sum = sum(g * w for g, w in zip(grades, weights))
         total_weight = sum(weights)
-        final_grade = (weighted_sum / total_wegiht)
+        final_grade = (weighted_sum / total_weight)
         await ctx.send(f"Your calculated grade is: {final_grade:.2f}")
         
     except (ValueError, ZeroDivisionError, IndexError):
